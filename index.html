@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101828">
+    <meta name="description" content="Alcántara Auto Care ofrece mantenimiento, diagnóstico y reparación profesional para tu vehículo.">
+    <title>Alcántara Auto Care | Servicio Automotriz Profesional</title>
+    <style>
+        :root { --ink:#101828; --amber:#f7b32b; --amber-dark:#d98b16; --surface:#fff; --soft:#f4f6f8; --muted:#667085; --line:#e4e7ec; }
+        * { box-sizing:border-box; }
+        html { scroll-behavior:smooth; scroll-padding-top:84px; }
+        body { margin:0; color:var(--ink); background:var(--surface); font-family:Inter,"Segoe UI",Arial,sans-serif; }
+        a { color:inherit; }
+        .container { width:min(1120px,88%); margin-inline:auto; }
+        .eyebrow { color:var(--amber-dark); font-size:.78rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+        .button { display:inline-flex; align-items:center; justify-content:center; min-height:50px; padding:0 22px; border:0; border-radius:7px; background:var(--amber); color:#101828; font-weight:800; text-decoration:none; cursor:pointer; transition:.25s ease; }
+        .button:hover { background:#ffc84a; transform:translateY(-2px); box-shadow:0 10px 24px rgba(247,179,43,.24); }
+        .button-outline { border:1px solid rgba(255,255,255,.55); background:transparent; color:white; }
+        .button-outline:hover { border-color:white; background:white; color:var(--ink); box-shadow:none; }
+
+        header { position:absolute; z-index:20; width:100%; color:white; }
+        .nav { height:84px; display:flex; align-items:center; justify-content:space-between; }
+        .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+        .brand-mark { width:38px; height:38px; display:grid; place-items:center; border:2px solid var(--amber); border-radius:50%; color:var(--amber); font-weight:900; }
+        .brand strong { font-size:1.15rem; }
+        .brand span { color:var(--amber); }
+        nav { display:flex; align-items:center; gap:28px; }
+        nav a { text-decoration:none; font-size:.92rem; font-weight:700; }
+        nav a:not(.nav-cta):hover { color:var(--amber); }
+        .nav-cta { padding:11px 16px; border:1px solid rgba(255,255,255,.45); border-radius:6px; }
+        .menu-button { display:none; border:0; background:transparent; color:white; font-size:1.7rem; cursor:pointer; }
+
+        .hero { min-height:740px; display:flex; align-items:center; position:relative; overflow:hidden; background:linear-gradient(90deg,rgba(8,14,26,.94) 0%,rgba(8,14,26,.66) 52%,rgba(8,14,26,.18) 100%),url("https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1800&q=85") center/cover; color:white; }
+        .hero::after { content:""; position:absolute; right:-130px; bottom:-210px; width:440px; height:440px; border:1px solid rgba(247,179,43,.38); border-radius:50%; }
+        .hero-content { max-width:690px; padding-top:60px; position:relative; z-index:2; }
+        .hero h1 { max-width:680px; margin:18px 0 22px; font-size:clamp(3.2rem,7vw,5.8rem); line-height:.92; letter-spacing:-.055em; }
+        .hero h1 em { color:var(--amber); font-style:normal; }
+        .hero p { max-width:590px; margin:0 0 32px; color:#e6ebf2; font-size:1.15rem; line-height:1.75; }
+        .hero-actions { display:flex; gap:12px; }
+
+        .proof { position:relative; z-index:5; margin-top:-58px; }
+        .proof-grid { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid rgba(16,24,40,.06); border-radius:10px; background:white; box-shadow:0 18px 55px rgba(16,24,40,.12); }
+        .proof-item { min-height:116px; display:flex; flex-direction:column; justify-content:center; padding:22px 28px; border-right:1px solid var(--line); }
+        .proof-item:last-child { border-right:0; }
+        .proof-item strong { margin-bottom:5px; font-size:1.18rem; }
+        .proof-item span { color:var(--muted); font-size:.88rem; }
+
+        section { padding:110px 0; }
+        .section-head { max-width:660px; margin-bottom:42px; }
+        .section-head h2 { margin:12px 0 14px; font-size:clamp(2.3rem,5vw,4.2rem); line-height:1; letter-spacing:-.045em; }
+        .section-head p { margin:0; color:var(--muted); line-height:1.7; }
+        .services { background:var(--soft); }
+        .service-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+        .service-card { min-height:360px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; border-radius:10px; color:white; background:#1f2937; background-size:cover; background-position:center; }
+        .service-card::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 18%,rgba(10,15,27,.94) 100%); }
+        .service-card:nth-child(1) { background-image:url("https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=85"); }
+        .service-card:nth-child(2) { background-image:url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=85"); }
+        .service-card:nth-child(3) { background-image:url("https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=900&q=85"); }
+        .service-content { position:relative; z-index:2; padding:28px; }
+        .service-number { color:var(--amber); font-size:.75rem; font-weight:900; letter-spacing:.14em; }
+        .service-content h3 { margin:10px 0 8px; font-size:1.55rem; }
+        .service-content p { margin:0; color:#dae1ea; line-height:1.55; }
+
+        .process-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:70px; align-items:center; }
+        .process-image { min-height:520px; border-radius:12px; background:url("https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=1000&q=85") center/cover; }
+        .process-list { display:grid; gap:0; }
+        .process-step { display:grid; grid-template-columns:54px 1fr; gap:18px; padding:20px 0; border-bottom:1px solid var(--line); }
+        .process-step:last-child { border-bottom:0; }
+        .step-number { width:54px; height:54px; display:grid; place-items:center; border:1px solid var(--amber); border-radius:50%; color:var(--amber-dark); font-weight:900; }
+        .process-step h3 { margin:3px 0 6px; }
+        .process-step p { margin:0; color:var(--muted); line-height:1.6; }
+
+        .booking { padding:85px 0; background:var(--ink); color:white; }
+        .booking-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:70px; align-items:center; }
+        .booking-copy h2 { margin:12px 0 18px; font-size:clamp(2.5rem,5vw,4.5rem); line-height:.98; letter-spacing:-.05em; }
+        .booking-copy p { color:#bdc5d2; line-height:1.7; }
+        form { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:28px; border-radius:10px; background:white; }
+        form input,form select { width:100%; height:52px; border:1px solid var(--line); border-radius:6px; padding:0 14px; color:var(--ink); background:white; font:inherit; }
+        form input:focus,form select:focus { outline:3px solid rgba(247,179,43,.2); border-color:var(--amber); }
+        form .full { grid-column:1/-1; }
+        form .button { width:100%; }
+
+        .testimonials { text-align:center; }
+        .testimonial-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+        .testimonial { padding:30px; border:1px solid var(--line); border-radius:10px; text-align:left; }
+        .stars { color:var(--amber-dark); letter-spacing:.1em; }
+        .testimonial p { min-height:100px; color:#475467; line-height:1.7; }
+        .testimonial strong { display:block; }
+
+        footer { padding:28px 0; background:#080d18; color:#98a2b3; }
+        .footer-grid { display:flex; justify-content:space-between; align-items:center; }
+        .footer-grid a { color:white; text-decoration:none; }
+        .whatsapp { position:fixed; z-index:30; right:22px; bottom:22px; width:58px; height:58px; display:grid; place-items:center; border-radius:50%; background:#25d366; color:white; text-decoration:none; font-size:1.55rem; box-shadow:0 12px 30px rgba(37,211,102,.35); }
+
+        @media (prefers-reduced-motion:no-preference) {
+            .reveal { opacity:0; transform:translateY(20px); transition:.7s ease; }
+            .reveal.visible { opacity:1; transform:none; }
+        }
+
+        @media (max-width:850px) {
+            .container { width:90%; }
+            .menu-button { display:block; }
+            nav { position:absolute; top:72px; left:5%; right:5%; display:none; flex-direction:column; align-items:stretch; gap:0; padding:12px; border-radius:8px; background:#101828; box-shadow:0 15px 40px rgba(0,0,0,.25); }
+            nav.open { display:flex; }
+            nav a { padding:13px; }
+            .nav-cta { margin-top:5px; text-align:center; }
+            .hero { min-height:670px; }
+            .hero h1 { font-size:clamp(3.2rem,15vw,4.8rem); }
+            .hero-actions { flex-wrap:wrap; }
+            .proof-grid { grid-template-columns:1fr 1fr; }
+            .proof-item:nth-child(2) { border-right:0; }
+            .proof-item:nth-child(-n+2) { border-bottom:1px solid var(--line); }
+            section { padding:80px 0; }
+            .service-grid,.testimonial-grid { grid-template-columns:1fr; }
+            .service-card { min-height:320px; }
+            .process-grid,.booking-grid { grid-template-columns:1fr; gap:38px; }
+            .process-image { min-height:390px; }
+            form { grid-template-columns:1fr; }
+            form .full { grid-column:auto; }
+        }
+        @media (max-width:520px) {
+            .brand strong { font-size:.95rem; }
+            .hero { background-position:62% center; }
+            .hero h1 { font-size:3.35rem; }
+            .hero p { font-size:1rem; }
+            .proof { margin-top:-36px; }
+            .proof-grid { grid-template-columns:1fr; }
+            .proof-item { min-height:86px; border-right:0; border-bottom:1px solid var(--line); }
+            .proof-item:nth-child(-n+2) { border-bottom:1px solid var(--line); }
+            .footer-grid { flex-direction:column; gap:8px; text-align:center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <a class="brand" href="#inicio" aria-label="Alcántara Auto Care inicio">
+                <div class="brand-mark">A</div>
+                <strong>Alcántara <span>Auto Care</span></strong>
+            </a>
+            <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
+            <nav aria-label="Navegación principal">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#proceso">Cómo trabajamos</a>
+                <a class="nav-cta" href="#citas">Solicitar cita</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="container hero-content reveal">
+                <span class="eyebrow">Mecánica y mantenimiento profesional</span>
+                <h1>Tu vehículo en <em>buenas manos.</em></h1>
+                <p>Diagnósticos precisos, trabajo transparente y servicio técnico especializado para mantenerte seguro en cada viaje.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#citas">Reservar una cita</a>
+                    <a class="button button-outline" href="#servicios">Ver servicios</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="proof">
+            <div class="container proof-grid reveal">
+                <div class="proof-item"><strong>+10 años</strong><span>de experiencia técnica</span></div>
+                <div class="proof-item"><strong>Trabajo certificado</strong><span>procesos y herramientas profesionales</span></div>
+                <div class="proof-item"><strong>Diagnóstico preciso</strong><span>te explicamos el problema</span></div>
+                <div class="proof-item"><strong>Garantía de servicio</strong><span>calidad y respaldo</span></div>
+            </div>
+        </div>
+
+        <section class="services" id="servicios">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Nuestros servicios</span>
+                    <h2>Cuidado completo para tu vehículo</h2>
+                    <p>Soluciones de mantenimiento y reparación realizadas con precisión, productos confiables y comunicación clara.</p>
+                </div>
+                <div class="service-grid">
+                    <article class="service-card reveal"><div class="service-content"><span class="service-number">01 / MANTENIMIENTO</span><h3>Cambio de aceite</h3><p>Mantenimiento preventivo con lubricantes y filtros de calidad.</p></div></article>
+                    <article class="service-card reveal"><div class="service-content"><span class="service-number">02 / DIAGNÓSTICO</span><h3>Diagnóstico avanzado</h3><p>Identificación electrónica y mecánica de fallas con equipo especializado.</p></div></article>
+                    <article class="service-card reveal"><div class="service-content"><span class="service-number">03 / SEGURIDAD</span><h3>Sistema de frenos</h3><p>Inspección, reparación y mantenimiento de componentes esenciales.</p></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="proceso">
+            <div class="container process-grid">
+                <div class="process-image reveal" role="img" aria-label="Técnico realizando mantenimiento automotriz"></div>
+                <div class="reveal">
+                    <span class="eyebrow">Cómo trabajamos</span>
+                    <div class="process-list">
+                        <article class="process-step"><span class="step-number">01</span><div><h3>Recibimos tu vehículo</h3><p>Registramos el problema y revisamos la información disponible.</p></div></article>
+                        <article class="process-step"><span class="step-number">02</span><div><h3>Diagnosticamos</h3><p>Utilizamos herramientas profesionales y te explicamos los hallazgos.</p></div></article>
+                        <article class="process-step"><span class="step-number">03</span><div><h3>Aprobamos juntos</h3><p>Antes de comenzar, conoces el trabajo requerido y el alcance del servicio.</p></div></article>
+                        <article class="process-step"><span class="step-number">04</span><div><h3>Entregamos y garantizamos</h3><p>Comprobamos el resultado y devolvemos tu vehículo listo para conducir.</p></div></article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking" id="citas">
+            <div class="container booking-grid">
+                <div class="booking-copy reveal">
+                    <span class="eyebrow">Agenda tu servicio</span>
+                    <h2>Haz que tu auto esté listo.</h2>
+                    <p>Completa el formulario y recibirás una confirmación. Comparte tus datos solo para gestionar tu solicitud.</p>
+                </div>
+                <form id="appointmentForm" class="reveal">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" autocomplete="name" required>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" autocomplete="tel" required>
+                    <input class="full" type="email" id="email" name="email" placeholder="Correo electrónico" autocomplete="email" required>
+                    <select class="full" id="servicio" name="servicio" required>
+                        <option value="">Selecciona un servicio</option>
+                        <option>Cambio de aceite</option>
+                        <option>Diagnóstico avanzado</option>
+                        <option>Servicio de frenos</option>
+                        <option>Mantenimiento general</option>
+                    </select>
+                    <input class="full" type="date" id="fecha" name="fecha" aria-label="Fecha preferida" required>
+                    <button class="button full" type="submit">Enviar solicitud</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Confianza que se conduce</span>
+                    <h2>Clientes satisfechos</h2>
+                </div>
+                <div class="testimonial-grid">
+                    <article class="testimonial reveal"><div class="stars">★★★★★</div><p>“Explicaron claramente el diagnóstico y entregaron el vehículo a tiempo. Muy profesional.”</p><strong>María Rodríguez</strong></article>
+                    <article class="testimonial reveal"><div class="stars">★★★★★</div><p>“Excelente atención y trabajo transparente. El vehículo quedó funcionando perfectamente.”</p><strong>Carlos Martínez</strong></article>
+                    <article class="testimonial reveal"><div class="stars">★★★★★</div><p>“Un servicio responsable, rápido y con mucha atención a los detalles.”</p><strong>Andrea López</strong></article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <span>© 2026 Alcántara Auto Care</span>
+            <a href="#inicio">Volver arriba ↑</a>
+        </div>
+    </footer>
+
+    <a class="whatsapp" href="https://wa.me/" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">●</a>
+
+    <script>
+        const menuButton = document.querySelector(".menu-button");
+        const nav = document.querySelector("nav");
+        menuButton.addEventListener("click", () => {
+            const open = nav.classList.toggle("open");
+            menuButton.setAttribute("aria-expanded", String(open));
+        });
+        nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+            nav.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+        }));
+
+        const fecha = document.getElementById("fecha");
+        fecha.min = new Date().toISOString().split("T")[0];
+
+        document.getElementById("appointmentForm").addEventListener("submit", event => {
+            event.preventDefault();
+            const nombre = document.getElementById("nombre").value.trim();
+            const servicio = document.getElementById("servicio").value;
+            alert(`¡Gracias, ${nombre}! Hemos recibido tu solicitud de ${servicio}.`);
+            event.target.reset();
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold:0.12 });
+        document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+    </script>
+</body>
+</html>
+

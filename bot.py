@@ -7,6 +7,8 @@ from telegram.ext import (
     filters,
 )
 
+import os
+
 # Palabras prohibidas para filtrar
 palabras_prohibidas = [
     'malo', 'compro', 'vendo', 'barato', 'spam',
@@ -34,8 +36,11 @@ async def manejar_mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE) -
             )
 
 def main() -> None:
-    TOKEN = "7972119530:AAGyIIz1cZiK2DLAPmkksrqV75oU3pqry4A"
-    app = ApplicationBuilder().token(TOKEN).build()
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    if not token:
+        raise RuntimeError("TELEGRAM_BOT_TOKEN is not configured")
+
+    app = ApplicationBuilder().token(token).build()
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, manejar_mensajes))
